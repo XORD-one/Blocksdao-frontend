@@ -97,6 +97,8 @@ const externalAddresses: Record<SupportedChains, ExternalContractAddresses> = {
   },
 };
 
+  console.log( "app", app[5])
+
 const getAddresses = (): ContractAddresses => {
   let nounsAddresses = {} as NounsContractAddresses;
   try {
@@ -106,7 +108,7 @@ const getAddresses = (): ContractAddresses => {
 };
 
 const config = {
-  app: app[CHAIN_ID],
+  app: app[5],
   addresses: getAddresses(),
 };
 

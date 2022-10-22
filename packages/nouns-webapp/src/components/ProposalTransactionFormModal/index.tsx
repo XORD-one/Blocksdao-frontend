@@ -1,6 +1,7 @@
-import { utils } from 'ethers';
-import { Interface } from 'ethers/lib/utils';
-import { ChangeEvent, useState } from 'react';
+// @ts-nocheck
+import { utils } from "ethers";
+import { Interface } from "ethers/lib/utils";
+import { ChangeEvent, useState } from "react";
 import {
   Button,
   Col,
@@ -11,15 +12,18 @@ import {
   InputGroup,
   Modal,
   Row,
-} from 'react-bootstrap';
-import { useStepProgress, Step, StepProgressBar } from 'react-stepz';
-import { buildEtherscanAddressLink, buildEtherscanApiQuery } from '../../utils/etherscan';
-import { ProposalTransaction } from '../../wrappers/nounsDao';
-import classes from './ProposalTransactionFormModal.module.css';
-import BigNumber from 'bignumber.js';
-import 'bs-custom-file-input';
-import 'react-stepz/dist/index.css';
-import { Trans } from '@lingui/macro';
+} from "react-bootstrap";
+import { useStepProgress, Step, StepProgressBar } from "react-stepz";
+import {
+  buildEtherscanAddressLink,
+  buildEtherscanApiQuery,
+} from "../../utils/etherscan";
+import { ProposalTransaction } from "../../wrappers/nounsDao";
+import classes from "./ProposalTransactionFormModal.module.css";
+import BigNumber from "bignumber.js";
+import "bs-custom-file-input";
+import "react-stepz/dist/index.css";
+import { Trans } from "@lingui/macro";
 
 interface ProposalTransactionFormModalProps {
   show: boolean;
@@ -32,14 +36,14 @@ const ProposalTransactionFormModal = ({
   onHide,
   onProposalTransactionAdded,
 }: ProposalTransactionFormModalProps) => {
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const [abi, setABI] = useState<Interface>();
-  const [value, setValue] = useState('');
-  const [func, setFunction] = useState('');
+  const [value, setValue] = useState("");
+  const [func, setFunction] = useState("");
   const [args, setArguments] = useState<string[]>([]);
 
   const [isABIUploadValid, setABIUploadValid] = useState<boolean>();
-  const [abiFileName, setABIFileName] = useState<string | undefined>('');
+  const [abiFileName, setABIFileName] = useState<string | undefined>("");
 
   const addressValidator = (s: string) => {
     if (!utils.isAddress(s)) {
@@ -88,9 +92,9 @@ const ProposalTransactionFormModal = ({
     }
 
     const reader = new FileReader();
-    reader.onload = async e => {
+    reader.onload = async (e) => {
       try {
-        const abi = e?.target?.result?.toString() ?? '';
+        const abi = e?.target?.result?.toString() ?? "";
         setABI(new Interface(JSON.parse(abi)));
         setABIUploadValid(true);
         setABIFileName(file.name);
@@ -109,7 +113,7 @@ const ProposalTransactionFormModal = ({
 
   const getABI = async (address: string) => {
     let info = await getContractInformation(address);
-    if (info?.Proxy === '1' && utils.isAddress(info?.Implementation)) {
+    if (info?.Proxy === "1" && utils.isAddress(info?.Implementation)) {
       info = await getContractInformation(info.Implementation);
     }
     return info.ABI;
@@ -124,7 +128,7 @@ const ProposalTransactionFormModal = ({
       const result = await getABI(address);
       setABI(new Interface(JSON.parse(result)));
       setABIUploadValid(true);
-      setABIFileName('etherscan-abi-download.json');
+      setABIFileName("etherscan-abi-download.json");
     } catch {
       setABIUploadValid(undefined);
       setABIFileName(undefined);
@@ -137,36 +141,38 @@ const ProposalTransactionFormModal = ({
     }
     onProposalTransactionAdded({
       address,
-      value: value ? utils.parseEther(value).toString() : '0',
+      value: value ? utils.parseEther(value).toString() : "0",
       signature: func,
-      calldata: (func && abi?._encodeParams(abi?.functions[func]?.inputs, args)) || '0x',
+      calldata:
+        (func && abi?._encodeParams(abi?.functions[func]?.inputs, args)) ||
+        "0x",
     });
     clearState();
   };
 
   const steps = [
     {
-      label: 'Address',
-      name: 'address',
+      label: "Address",
+      name: "address",
       validator: () => addressValidator(address),
     },
     {
-      label: 'Value',
-      name: 'value',
+      label: "Value",
+      name: "value",
       validator: () => valueValidator(value),
     },
     {
-      label: 'Function',
-      name: 'function',
+      label: "Function",
+      name: "function",
     },
     {
-      label: 'Arguments',
-      name: 'arguments',
+      label: "Arguments",
+      name: "arguments",
       validator: () => argumentsValidator(args),
     },
     {
-      label: 'Summary',
-      name: 'summary',
+      label: "Summary",
+      name: "summary",
     },
   ];
 
@@ -176,10 +182,10 @@ const ProposalTransactionFormModal = ({
   });
 
   const clearState = () => {
-    setAddress('');
+    setAddress("");
     setABI(undefined);
-    setValue('');
-    setFunction('');
+    setValue("");
+    setFunction("");
     setArguments([]);
     setABIUploadValid(undefined);
     setABIFileName(undefined);
@@ -214,14 +220,18 @@ const ProposalTransactionFormModal = ({
             value={address}
             type="text"
             id="callee-address"
-            onChange={e => setAddress(e.target.value)}
+            onChange={(e) => setAddress(e.target.value)}
           />
         </Step>
         <Step step={1}>
           <label htmlFor="eth-value">
             <Trans>Value in ETH (Optional)</Trans>
           </label>
-          <FormControl value={value} id="eth-value" onChange={e => setValue(e.target.value)} />
+          <FormControl
+            value={value}
+            id="eth-value"
+            onChange={(e) => setValue(e.target.value)}
+          />
         </Step>
         <Step step={2}>
           <label htmlFor="function">
@@ -231,13 +241,18 @@ const ProposalTransactionFormModal = ({
             value={func}
             as="select"
             id="function"
-            onChange={e => setFunction(e.target.value)}
+            onChange={(e) => setFunction(e.target.value)}
           >
             <option className="text-muted">Select Contract Function</option>
-            {abi && Object.keys(abi.functions).map(func => <option value={func}>{func}</option>)}
+            {abi &&
+              Object.keys(abi.functions).map((func) => (
+                <option value={func}>{func}</option>
+              ))}
           </FormControl>
-          <label style={{ marginTop: '1rem' }} htmlFor="import-abi">
-            {abiFileName === 'etherscan-abi-download.json' ? abiFileName : 'ABI'}
+          <label style={{ marginTop: "1rem" }} htmlFor="import-abi">
+            {abiFileName === "etherscan-abi-download.json"
+              ? abiFileName
+              : "ABI"}
           </label>
           <Form.Control
             type="file"
@@ -245,7 +260,9 @@ const ProposalTransactionFormModal = ({
             accept="application/JSON"
             isValid={isABIUploadValid}
             isInvalid={isABIUploadValid === false}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => validateAndSetABI(e.target.files?.[0])}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              validateAndSetABI(e.target.files?.[0])
+            }
           />
         </Step>
         <Step step={3}>
@@ -262,8 +279,8 @@ const ProposalTransactionFormModal = ({
                         {input.type}
                       </InputGroup.Text>
                       <FormControl
-                        value={args[i] ?? ''}
-                        onChange={e => setArgument(i, e.target.value)}
+                        value={args[i] ?? ""}
+                        onChange={(e) => setArgument(i, e.target.value)}
                       />
                     </InputGroup>
                   </Col>
@@ -282,7 +299,11 @@ const ProposalTransactionFormModal = ({
               </b>
             </Col>
             <Col sm="9" className="text-break">
-              <a href={buildEtherscanAddressLink(address)} target="_blank" rel="noreferrer">
+              <a
+                href={buildEtherscanAddressLink(address)}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {address}
               </a>
             </Col>
@@ -314,7 +335,9 @@ const ProposalTransactionFormModal = ({
             <Col sm="9">
               <hr />
             </Col>
-            <Col sm="9">{abi?.functions[func]?.inputs?.length ? '' : <Trans>None</Trans>}</Col>
+            <Col sm="9">
+              {abi?.functions[func]?.inputs?.length ? "" : <Trans>None</Trans>}
+            </Col>
           </Row>
           {abi?.functions[func]?.inputs.map((input, i) => (
             <Row key={i}>

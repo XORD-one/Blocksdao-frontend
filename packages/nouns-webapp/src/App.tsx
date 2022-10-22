@@ -12,17 +12,17 @@ import NavBar from './components/NavBar';
 import NetworkAlert from './components/NetworkAlert';
 import Footer from './components/Footer';
 import AuctionPage from './pages/Auction';
-import GovernancePage from './pages/Governance';
-import CreateProposalPage from './pages/CreateProposal';
-import VotePage from './pages/Vote';
-import NoundersPage from './pages/Nounders';
-import NotFoundPage from './pages/NotFound';
-import Playground from './pages/Playground';
+// import GovernancePage from './pages/Governance';
+// import CreateProposalPage from './pages/CreateProposal';
+// import VotePage from './pages/Vote';
+// import NoundersPage from './pages/Nounders';
+// import NotFoundPage from './pages/NotFound';
+// import Playground from './pages/Playground';
+// import DelegatePage from './pages/DelegatePage';
 import { CHAIN_ID } from './config';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { AvatarProvider } from '@davatar/react';
 import dayjs from 'dayjs';
-import DelegatePage from './pages/DelegatePage';
 
 function App() { 
   const { account, chainId, library } = useEthers();
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className={`${classes.wrapper}`}>
-      {Number(CHAIN_ID) !== chainId && <NetworkAlert />}
+      {/* {Number(CHAIN_ID) !== chainId && <NetworkAlert />} */}
       {alertModal.show && (
         <AlertModal
           title={alertModal.title}
@@ -66,8 +66,8 @@ function App() {
             <Route exact path="/vote/:id" component={VotePage} />
             <Route exact path="/playground" component={Playground} />
             <Route exact path="/delegate" component={DelegatePage} />
-            <Route component={NotFoundPage} /> */}
-          </Switch>
+          <Route component={NotFoundPage} /> */}
+          </Switch>  
           <Footer />
         </AvatarProvider>
       </BrowserRouter>
