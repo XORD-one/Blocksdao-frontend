@@ -18,6 +18,7 @@ const Noun: React.FC<{
   wrapperClassName?: string;
 }> = props => {
   const { imgPath, alt, className, wrapperClassName } = props;
+  console.log("imgPath", imgPath)
   return (
     <div className={`${classes.imgWrapper} ${wrapperClassName}`}>
       <Image

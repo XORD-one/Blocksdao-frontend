@@ -67,11 +67,15 @@ const Auction: React.FC<AuctionProps> = (props) => {
     </div>
   );
 
+  console.log("nounContent", nounContent);
+
   const loadingNoun = (
     <div className={classes.nounWrapper}>
       <LoadingNoun />
     </div>
   );
+
+  console.log("loadingNoun", loadingNoun);
 
   const currentAuctionActivityContent = currentAuction && lastNounId && (
     <AuctionActivity
@@ -100,8 +104,8 @@ const Auction: React.FC<AuctionProps> = (props) => {
         <Row>
           <Col lg={{ span: 6 }} className={classes.nounContentCol}>
             {/* This is where the nft art is rendered || commenting it for now */}
-            {/* {currentAuction ? nounContent : loadingNoun} */}
-            <motion.div
+            {currentAuction ? nounContent : loadingNoun}
+            {/* <motion.div
               layout
               transition={{ duration: 0.3 }}
               animate={{
@@ -118,7 +122,7 @@ const Auction: React.FC<AuctionProps> = (props) => {
               }}
             >
               <img src={head} alt="ds" width="300" />
-            </motion.div>
+            </motion.div> */}
           </Col>
           <Col lg={{ span: 6 }} className={classes.auctionActivityCol}>
             {currentAuction &&
