@@ -11,7 +11,7 @@ import AlertModal from "./components/Modal";
 import NavBar from "./components/NavBar";
 import NetworkAlert from "./components/NetworkAlert";
 import Footer from "./components/Footer";
-import AuctionPage from "./pages/Auction";
+import AuctionPage from "./pages/Auction"; 
 // import GovernancePage from './pages/Governance';
 // import CreateProposalPage from './pages/CreateProposal';
 // import VotePage from './pages/Vote';
