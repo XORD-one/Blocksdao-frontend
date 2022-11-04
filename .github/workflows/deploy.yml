@@ -18,12 +18,12 @@ jobs:
         uses: actions/checkout@v1
       # Install NodeJS
       - name: Use Yarn
-      - uses: mskelton/setup-yarn@v1
+        uses: mskelton/setup-yarn@v1
         with:
           node-version: 14.x
       # Run npm install and build on our code
-      - run: cd packages && nouns-webapp && npm install
-      - run: cd packages && nouns-webapp &&  npm run build --if-present
+      - run: cd packages && nouns-webapp && yarn install
+      - run: cd packages && nouns-webapp && yarn build --if-present
       # Deploy to Netlify using our production secrets
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
