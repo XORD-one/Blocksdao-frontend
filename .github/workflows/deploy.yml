@@ -32,7 +32,7 @@ jobs:
           NETLIFY_SITE_ID: cdb66bc9-610c-4a7a-a18d-f7d05535103c
 
         with:
-          args: deploy --dir= packages/nouns-webapp/build --prod
+          args: deploy --dir=build --prod
 # name: "Netlify Previews"
 
 # on:
