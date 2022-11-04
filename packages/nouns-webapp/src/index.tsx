@@ -125,6 +125,7 @@ const ChainSubscriber: React.FC = () => {
 
   const loadState = async () => {
     const wsProvider = new WebSocketProvider(config.app.wsRpcUri);
+    console.log("weprovider", wsProvider);
     console.log("weProvider", wsProvider);
     const nounsAuctionHouseContract = NounsAuctionHouseFactory.connect(
       "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B",
@@ -263,7 +264,7 @@ ReactDOM.render(
       <ChainSubscriber />
       <React.StrictMode>
         <Web3ReactProvider
-          getLibrary={
+          getLibrary={ 
             (provider) => new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
           }
         >

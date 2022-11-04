@@ -1,25 +1,29 @@
-import Banner from '../../components/Banner';
-import Auction from '../../components/Auction';
-import Documentation from '../../components/Documentation';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setOnDisplayAuctionNounId } from '../../state/slices/onDisplayAuction';
-import { push } from 'connected-react-router';
-import { nounPath } from '../../utils/history';
-import useOnDisplayAuction from '../../wrappers/onDisplayAuction';
-import { useEffect } from 'react';
-import ProfileActivityFeed from '../../components/ProfileActivityFeed';
+import Banner from "../../components/Banner";
+import Auction from "../../components/Auction";
+import Documentation from "../../components/Documentation";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setOnDisplayAuctionNounId } from "../../state/slices/onDisplayAuction";
+import { push } from "connected-react-router";
+import { nounPath } from "../../utils/history";
+import useOnDisplayAuction from "../../wrappers/onDisplayAuction";
+import { useEffect } from "react";
+import ProfileActivityFeed from "../../components/ProfileActivityFeed";
 
 interface AuctionPageProps {
   initialAuctionId?: number;
 }
 
-const AuctionPage: React.FC<AuctionPageProps> = props => {
+const AuctionPage: React.FC<AuctionPageProps> = (props) => {
   const { initialAuctionId } = props;
   const onDisplayAuction = useOnDisplayAuction();
-  const lastAuctionNounId = useAppSelector(state => state.onDisplayAuction.lastAuctionNounId);
+  const lastAuctionNounId = useAppSelector(
+    (state) => state.onDisplayAuction.lastAuctionNounId
+  );
   const onDisplayAuctionNounId = onDisplayAuction?.nounId.toNumber();
 
-  const dispatch = useAppDispatch(); 
+  console.log("onDisplayAuctionId", onDisplayAuctionNounId);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!lastAuctionNounId) return;
@@ -43,11 +47,12 @@ const AuctionPage: React.FC<AuctionPageProps> = props => {
     }
   }, [lastAuctionNounId, dispatch, initialAuctionId, onDisplayAuction]);
 
-  return (   
+  return (
     <>
       <Auction auction={onDisplayAuction} />
       {onDisplayAuctionNounId !== undefined && onDisplayAuctionNounId !== lastAuctionNounId ? (
-        <ProfileActivityFeed nounId={onDisplayAuctionNounId} />
+        // <ProfileActivityFeed nounId={onDisplayAuctionNounId} />
+        <h1>sf</h1>
       ) : (
         <Banner />
       )}
