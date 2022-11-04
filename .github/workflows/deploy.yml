@@ -1,29 +1,64 @@
-name: "Netlify Previews"
+#  Name of workflow
+name: Deploy to Netlify
 
 on:
   push:
     branches:
       - development
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+# Jobs to carry out
 jobs:
   deploy:
-    name: "Deploy"
+    # Operating system to run job on
     runs-on: ubuntu-latest
-
+    # Steps in job
     steps:
       # Get code from repo
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v1
-      # Install Yarn
+      # Install NodeJS
       - name: Use Yarn
-        uses: mskelton/setup-yarn@v1
-      # Sets the branch name as environment variable
-      - name: Deploy to Netlify
-        uses: jsmrcaga/action-netlify-deploy@master
+      - uses: mskelton/setup-yarn@v1
         with:
-          node_version: 16.0.0
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          node-version: 14.x
+      # Run npm install and build on our code
+      - run: cd packages && nouns-webapp && npm install
+      - run: cd packages && nouns-webapp &&  npm run build --if-present
+      # Deploy to Netlify using our production secrets
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: U5-0dzyh7Ct5nH3zawzeTkM3U2Qd2DBXiGS9rRRLH8o
+          NETLIFY_SITE_ID: cdb66bc9-610c-4a7a-a18d-f7d05535103c
+
+        with:
+          args: deploy --dir= packages/nouns-webapp/build --prod
+# name: "Netlify Previews"
+
+# on:
+#   push:
+#     branches:
+#       - development
+
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
+
+# jobs:
+#   deploy:
+#     name: "Deploy"
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       # Get code from repo
+#       - name: Checkout Code
+#         uses: actions/checkout@v1
+#       # Install Yarn
+#       - name: Use Yarn
+#         uses: mskelton/setup-yarn@v1
+#       # Sets the branch name as environment variable
+#       - name: Deploy to Netlify
+#         uses: jsmrcaga/action-netlify-deploy@master
+#         with:
+#           node_version: 16.0.0
+#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
