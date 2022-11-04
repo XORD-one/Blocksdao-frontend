@@ -127,7 +127,7 @@ const ChainSubscriber: React.FC = () => {
     const wsProvider = new WebSocketProvider(config.app.wsRpcUri);
     console.log("weProvider", wsProvider);
     const nounsAuctionHouseContract = NounsAuctionHouseFactory.connect(
-      "0xEbaEB2A96f561eF1c347DE0F24bc3Bb4Dc39d5be",
+      "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B",
       wsProvider
     );
 
