@@ -2,8 +2,7 @@ name: "Netlify Previews"
 
 on:
   push:
-    branches:
-      - development
+    branches: [development]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,13 +15,13 @@ jobs:
     steps:
       # Get code from repo
       - name: Checkout Code
-      - uses: actions/checkout@v1
+        uses: actions/checkout@v1
       # Install Yarn
       - name: Use Yarn
         uses: mskelton/setup-yarn@v1
       # Sets the branch name as environment variable
-      - uses: nelonoel/branch-name@v1.0.1
-      - uses: jsmrcaga/action-netlify-deploy@master
+        uses: nelonoel/branch-name@v1.0.1
+        uses: jsmrcaga/action-netlify-deploy@master
         with:
           install_command: true
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
