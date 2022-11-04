@@ -1,35 +1,26 @@
-import {
-  Auction,
-  AuctionHouseContractFunction,
-} from "../../wrappers/nounsAuction";
-import { useEthers, useContractFunction } from "@usedapp/core";
-import { connectContractToSigner } from "@usedapp/core/dist/cjs/src/hooks";
-import { useAppSelector } from "../../hooks";
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  ChangeEvent,
-  useCallback,
-} from "react";
-import { utils, BigNumber as EthersBN } from "ethers";
-import BigNumber from "bignumber.js";
-import classes from "./Bid.module.css";
-import { Spinner, InputGroup, FormControl, Button, Col } from "react-bootstrap";
-import { useAuctionMinBidIncPercentage } from "../../wrappers/nounsAuction";
-import { useAppDispatch } from "../../hooks";
-import { AlertModal, setAlertModal } from "../../state/slices/application";
-import { NounsAuctionHouseFactory } from "../../.../../../../nouns-sdk";
-import config from "../../config";
-import WalletConnectModal from "../WalletConnectModal";
-import SettleManuallyBtn from "../SettleManuallyBtn";
-import { Trans } from "@lingui/macro";
-import { useActiveLocale } from "../../hooks/useActivateLocale";
-import responsiveUiUtilsClasses from "../../utils/ResponsiveUIUtils.module.css";
+import { Auction, AuctionHouseContractFunction } from '../../wrappers/nounsAuction';
+import { useEthers, useContractFunction } from '@usedapp/core';
+import { connectContractToSigner } from '@usedapp/core/dist/cjs/src/hooks';
+import { useAppSelector } from '../../hooks';
+import React, { useEffect, useState, useRef, ChangeEvent, useCallback } from 'react';
+import { utils, BigNumber as EthersBN } from 'ethers';
+import BigNumber from 'bignumber.js';
+import classes from './Bid.module.css';
+import { Spinner, InputGroup, FormControl, Button, Col } from 'react-bootstrap';
+import { useAuctionMinBidIncPercentage } from '../../wrappers/nounsAuction';
+import { useAppDispatch } from '../../hooks';
+import { AlertModal, setAlertModal } from '../../state/slices/application';
+import { NounsAuctionHouseFactory } from '@nouns/sdk';
+import config from '../../config';
+import WalletConnectModal from '../WalletConnectModal';
+import SettleManuallyBtn from '../SettleManuallyBtn';
+import { Trans } from '@lingui/macro';
+import { useActiveLocale } from '../../hooks/useActivateLocale';
+import responsiveUiUtilsClasses from '../../utils/ResponsiveUIUtils.module.css';
 
 const computeMinimumNextBid = (
   currentBid: BigNumber,
-  minBidIncPercentage: BigNumber | undefined
+  minBidIncPercentage: BigNumber | undefined,
 ): BigNumber => {
   if (!minBidIncPercentage) {
     return new BigNumber(0);
@@ -41,7 +32,7 @@ const computeMinimumNextBid = (
 
 const minBidEth = (minBid: BigNumber): string => {
   if (minBid.isZero()) {
-    return "0.01";
+    return '0.01';
   }
 
   const eth = utils.formatEther(EthersBN.from(minBid.toString()));
@@ -58,20 +49,20 @@ const currentBid = (bidInputRef: React.RefObject<HTMLInputElement>) => {
 const Bid: React.FC<{
   auction: Auction;
   auctionEnded: boolean;
-}> = (props) => {
-  const activeAccount = useAppSelector((state) => state.account.activeAccount);
+}> = props => {
+  const activeAccount = useAppSelector(state => state.account.activeAccount);
   const { library } = useEthers();
   let { auction, auctionEnded } = props;
   const activeLocale = useActiveLocale();
   const nounsAuctionHouseContract: any = new NounsAuctionHouseFactory().attach(
-    config.addresses.nounsAuctionHouseProxy
+    config.addresses.nounsAuctionHouseProxy,
   );
 
-  const account = useAppSelector((state) => state.account.activeAccount);
+  const account = useAppSelector(state => state.account.activeAccount);
 
   const bidInputRef = useRef<HTMLInputElement>(null);
 
-  const [bidInput, setBidInput] = useState("");
+  const [bidInput, setBidInput] = useState('');
 
   const [bidButtonContent, setBidButtonContent] = useState({
     loading: false,
@@ -85,32 +76,28 @@ const Bid: React.FC<{
   };
 
   const dispatch = useAppDispatch();
-  const setModal = useCallback(
-    (modal: AlertModal) => dispatch(setAlertModal(modal)),
-    [dispatch]
-  );
+  const setModal = useCallback((modal: AlertModal) => dispatch(setAlertModal(modal)), [dispatch]);
 
   const minBidIncPercentage = useAuctionMinBidIncPercentage();
   const minBid = computeMinimumNextBid(
     auction && new BigNumber(auction.amount.toString()),
-    minBidIncPercentage
+    minBidIncPercentage,
   );
 
   const { send: placeBid, state: placeBidState } = useContractFunction(
     nounsAuctionHouseContract,
-    AuctionHouseContractFunction.createBid
+    AuctionHouseContractFunction.createBid,
   );
-  const { send: settleAuction, state: settleAuctionState } =
-    useContractFunction(
-      nounsAuctionHouseContract,
-      AuctionHouseContractFunction.settleCurrentAndCreateNewAuction
-    );
+  const { send: settleAuction, state: settleAuctionState } = useContractFunction(
+    nounsAuctionHouseContract,
+    AuctionHouseContractFunction.settleCurrentAndCreateNewAuction,
+  );
 
   const bidInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
 
     // disable more than 2 digits after decimal point
-    if (input.includes(".") && event.target.value.split(".")[1].length > 2) {
+    if (input.includes('.') && event.target.value.split('.')[1].length > 2) {
       return;
     }
 
@@ -128,8 +115,8 @@ const Bid: React.FC<{
         title: <Trans>Insufficient bid amount 🤏</Trans>,
         message: (
           <Trans>
-            Please place a bid higher than or equal to the minimum bid amount of{" "}
-            {minBidEth(minBid)} ETH
+            Please place a bid higher than or equal to the minimum bid amount of {minBidEth(minBid)}{' '}
+            ETH
           </Trans>
         ),
       });
@@ -138,11 +125,7 @@ const Bid: React.FC<{
     }
 
     const value = utils.parseEther(bidInputRef.current.value.toString());
-    const contract = connectContractToSigner(
-      nounsAuctionHouseContract,
-      undefined,
-      library
-    );
+    const contract = connectContractToSigner(nounsAuctionHouseContract, undefined, library);
     const gasLimit = await contract.estimateGas.createBid(auction.nounId, {
       value,
     });
@@ -158,7 +141,7 @@ const Bid: React.FC<{
 
   const clearBidInput = () => {
     if (bidInputRef.current) {
-      bidInputRef.current.value = "";
+      bidInputRef.current.value = '';
     }
   };
 
@@ -167,22 +150,17 @@ const Bid: React.FC<{
     if (!account) return;
 
     // tx state is mining
-    const isMiningUserTx = placeBidState.status === "Mining";
+    const isMiningUserTx = placeBidState.status === 'Mining';
     // allows user to rebid against themselves so long as it is not the same tx
-    const isCorrectTx = currentBid(bidInputRef).isEqualTo(
-      new BigNumber(auction.amount.toString())
-    );
+    const isCorrectTx = currentBid(bidInputRef).isEqualTo(new BigNumber(auction.amount.toString()));
     if (isMiningUserTx && auction.bidder === account && isCorrectTx) {
-      placeBidState.status = "Success";
+      placeBidState.status = 'Success';
       setModal({
         title: <Trans>Success</Trans>,
         message: <Trans>Bid was placed successfully!</Trans>,
         show: true,
       });
-      setBidButtonContent({
-        loading: false,
-        content: <Trans>Place bid</Trans>,
-      });
+      setBidButtonContent({ loading: false, content: <Trans>Place bid</Trans> });
       clearBidInput();
     }
   }, [auction, placeBidState, account, setModal]);
@@ -190,31 +168,27 @@ const Bid: React.FC<{
   // placing bid transaction state hook
   useEffect(() => {
     switch (!auctionEnded && placeBidState.status) {
-      case "None":
+      case 'None':
         setBidButtonContent({
           loading: false,
           content: <Trans>Place bid</Trans>,
         });
         break;
-      case "Mining":
+      case 'Mining':
         setBidButtonContent({ loading: true, content: <></> });
         break;
-      case "Fail":
+      case 'Fail':
         setModal({
           title: <Trans>Transaction Failed</Trans>,
-          message: placeBidState?.errorMessage || (
-            <Trans>Please try again.</Trans>
-          ),
+          message: placeBidState?.errorMessage || <Trans>Please try again.</Trans>,
           show: true,
         });
         setBidButtonContent({ loading: false, content: <Trans>Bid</Trans> });
         break;
-      case "Exception":
+      case 'Exception':
         setModal({
           title: <Trans>Error</Trans>,
-          message: placeBidState?.errorMessage || (
-            <Trans>Please try again.</Trans>
-          ),
+          message: placeBidState?.errorMessage || <Trans>Please try again.</Trans>,
           show: true,
         });
         setBidButtonContent({ loading: false, content: <Trans>Bid</Trans> });
@@ -225,51 +199,38 @@ const Bid: React.FC<{
   // settle auction transaction state hook
   useEffect(() => {
     switch (auctionEnded && settleAuctionState.status) {
-      case "None":
+      case 'None':
         setBidButtonContent({
           loading: false,
           content: <Trans>Settle Auction</Trans>,
         });
         break;
-      case "Mining":
+      case 'Mining':
         setBidButtonContent({ loading: true, content: <></> });
         break;
-      case "Success":
+      case 'Success':
         setModal({
           title: <Trans>Success</Trans>,
           message: <Trans>Settled auction successfully!</Trans>,
           show: true,
         });
-        setBidButtonContent({
-          loading: false,
-          content: <Trans>Settle Auction</Trans>,
-        });
+        setBidButtonContent({ loading: false, content: <Trans>Settle Auction</Trans> });
         break;
-      case "Fail":
+      case 'Fail':
         setModal({
           title: <Trans>Transaction Failed</Trans>,
-          message: settleAuctionState?.errorMessage || (
-            <Trans>Please try again.</Trans>
-          ),
+          message: settleAuctionState?.errorMessage || <Trans>Please try again.</Trans>,
           show: true,
         });
-        setBidButtonContent({
-          loading: false,
-          content: <Trans>Settle Auction</Trans>,
-        });
+        setBidButtonContent({ loading: false, content: <Trans>Settle Auction</Trans> });
         break;
-      case "Exception":
+      case 'Exception':
         setModal({
           title: <Trans>Error</Trans>,
-          message: settleAuctionState?.errorMessage || (
-            <Trans>Please try again.</Trans>
-          ),
+          message: settleAuctionState?.errorMessage || <Trans>Please try again.</Trans>,
           show: true,
         });
-        setBidButtonContent({
-          loading: false,
-          content: <Trans>Settle Auction</Trans>,
-        });
+        setBidButtonContent({ loading: false, content: <Trans>Settle Auction</Trans> });
         break;
     }
   }, [settleAuctionState, auctionEnded, setModal]);
@@ -277,13 +238,11 @@ const Bid: React.FC<{
   if (!auction) return null;
 
   const isDisabled =
-    placeBidState.status === "Mining" ||
-    settleAuctionState.status === "Mining" ||
-    !activeAccount;
+    placeBidState.status === 'Mining' || settleAuctionState.status === 'Mining' || !activeAccount;
 
   const fomoNounsBtnOnClickHandler = () => {
     // Open Fomo Nouns in a new tab
-    window.open("https://fomonouns.wtf", "_blank")?.focus();
+    window.open('https://fomonouns.wtf', '_blank')?.focus();
   };
 
   const isWalletConnected = activeAccount !== undefined;
@@ -299,19 +258,17 @@ const Bid: React.FC<{
             <span className={classes.customPlaceholderBidAmt}>
               {!auctionEnded && !bidInput ? (
                 <>
-                  Ξ {minBidEth(minBid)}{" "}
+                  Ξ {minBidEth(minBid)}{' '}
                   <span
                     className={
-                      activeLocale === "ja-JP"
-                        ? responsiveUiUtilsClasses.disableSmallScreens
-                        : ""
+                      activeLocale === 'ja-JP' ? responsiveUiUtilsClasses.disableSmallScreens : ''
                     }
                   >
                     <Trans>or more</Trans>
                   </span>
                 </>
               ) : (
-                ""
+                ''
               )}
             </span>
             <FormControl
@@ -326,35 +283,23 @@ const Bid: React.FC<{
         )}
         {!auctionEnded ? (
           <Button
-            className={
-              auctionEnded ? classes.bidBtnAuctionEnded : classes.bidBtn
-            }
+            className={auctionEnded ? classes.bidBtnAuctionEnded : classes.bidBtn}
             onClick={auctionEnded ? settleAuctionHandler : placeBidHandler}
             disabled={isDisabled}
           >
-            {bidButtonContent.loading ? (
-              <Spinner animation="border" />
-            ) : (
-              bidButtonContent.content
-            )}
+            {bidButtonContent.loading ? <Spinner animation="border" /> : bidButtonContent.content}
           </Button>
         ) : (
           <>
             <Col lg={12} className={classes.voteForNextNounBtnWrapper}>
-              <Button
-                className={classes.bidBtnAuctionEnded}
-                onClick={fomoNounsBtnOnClickHandler}
-              >
+              <Button className={classes.bidBtnAuctionEnded} onClick={fomoNounsBtnOnClickHandler}>
                 <Trans>Vote for the next Noun</Trans> ⌐◧-◧
               </Button>
             </Col>
             {/* Only show force settle button if wallet connected */}
             {isWalletConnected && (
               <Col lg={12}>
-                <SettleManuallyBtn
-                  settleAuctionHandler={settleAuctionHandler}
-                  auction={auction}
-                />
+                <SettleManuallyBtn settleAuctionHandler={settleAuctionHandler} auction={auction} />
               </Col>
             )}
           </>
