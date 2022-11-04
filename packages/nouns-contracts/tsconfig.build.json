@@ -5,5 +5,5 @@
     "outDir": "dist"
   },
   // "include": ["src", "typechain", "abi/**/*.json"]
-  "include": ["src", "typechain", "abi/**/*.json"]
+  "include": ["src", "typechain"]
 }
