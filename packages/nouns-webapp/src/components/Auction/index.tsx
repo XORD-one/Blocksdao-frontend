@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { useState } from "react";
 import { Col } from "react-bootstrap";
 import { StandaloneNounWithSeed } from "../StandaloneNoun";
 import AuctionActivity from "../AuctionActivity";
@@ -18,11 +17,7 @@ import {
   setPrevOnDisplayAuctionNounId,
 } from "../../state/slices/onDisplayAuction";
 import { beige, grey } from "../../utils/nounBgColors";
-import {
-  AnimatePresence,
-  motion,
-  useAnimation,
-} from "framer-motion/dist/framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 import head from "../../assets/head.svg";
 
 interface AuctionProps {
@@ -104,8 +99,8 @@ const Auction: React.FC<AuctionProps> = (props) => {
         <Row>
           <Col lg={{ span: 6 }} className={classes.nounContentCol}>
             {/* This is where the nft art is rendered || commenting it for now */}
-            {currentAuction ? nounContent : loadingNoun}
-            {/* <motion.div
+            {/* {currentAuction ? nounContent : loadingNoun} */}
+            <motion.div
               layout
               transition={{ duration: 0.3 }}
               animate={{
@@ -122,7 +117,7 @@ const Auction: React.FC<AuctionProps> = (props) => {
               }}
             >
               <img src={head} alt="ds" width="300" />
-            </motion.div> */}
+            </motion.div>
           </Col>
           <Col lg={{ span: 6 }} className={classes.auctionActivityCol}>
             {currentAuction &&

@@ -7,7 +7,6 @@ import { push } from "connected-react-router";
 import { nounPath } from "../../utils/history";
 import useOnDisplayAuction from "../../wrappers/onDisplayAuction";
 import { useEffect } from "react";
-import ProfileActivityFeed from "../../components/ProfileActivityFeed";
 
 interface AuctionPageProps {
   initialAuctionId?: number;
