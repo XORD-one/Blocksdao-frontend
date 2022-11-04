@@ -4,7 +4,7 @@ name: Deploy to Netlify
 on:
   push:
     branches:
-      - development
+      - "development"
 
 # Jobs to carry out
 jobs:
