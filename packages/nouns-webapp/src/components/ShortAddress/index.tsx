@@ -1,8 +1,8 @@
-import { useReverseENSLookUp } from "../../utils/ensLookup";
-import { resolveNounContractAddress } from "../../utils/resolveNounsContractAddress";
+// import { useReverseENSLookUp } from "../../utils/ensLookup";
+// import { resolveNounContractAddress } from "../../utils/resolveNounsContractAddress";
 import { useEthers } from "@usedapp/core";
 import classes from "./ShortAddress.module.css";
-import { containsBlockedText } from "../../utils/moderation/containsBlockedText";
+// import { containsBlockedText } from "../../utils/moderation/containsBlockedText";
 import { useShortAddress } from "../../utils/addressAndENSDisplayUtils";
 import React from "react";
 import Identicon from "../Identicon";

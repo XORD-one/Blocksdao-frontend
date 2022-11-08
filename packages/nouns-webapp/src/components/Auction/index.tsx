@@ -17,8 +17,8 @@ import {
   setPrevOnDisplayAuctionNounId,
 } from "../../state/slices/onDisplayAuction";
 import { beige, grey } from "../../utils/nounBgColors";
-import { motion } from "framer-motion/dist/framer-motion";
-import head from "../../assets/head.svg";
+// import { motion } from "framer-motion/dist/framer-motion";
+// import head from "../../assets/head.svg";
 
 interface AuctionProps {
   auction?: IAuction;

@@ -74,7 +74,7 @@ function App() {
           </Switch>
           <Footer />
         </AvatarProvider>
-      </BrowserRouter>
+      </BrowserRouter> 
     </div>
   );
 }
