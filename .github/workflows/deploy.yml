@@ -1,0 +1,35 @@
+#  Name of workflow
+name: Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - "development"
+
+# Jobs to carry out
+jobs:
+  deploy:
+    # Operating system to run job on
+    runs-on: ubuntu-latest
+    # Steps in job
+    steps:
+      # Get code from repo
+      - name: Checkout code
+        uses: actions/checkout@v1
+      # Install NodeJS
+      - name: Use Yarn
+        uses: mskelton/setup-yarn@v1
+        with:
+          node-version: 14.x
+      # Run npm install and build on our code
+      - run: cd packages && cd nouns-webapp && yarn install
+      - run: cd packages && cd nouns-webapp && yarn build --if-present
+      # Deploy to Netlify using our production secrets
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: U5-0dzyh7Ct5nH3zawzeTkM3U2Qd2DBXiGS9rRRLH8o
+          NETLIFY_SITE_ID: cdb66bc9-610c-4a7a-a18d-f7d05535103c
+
+        with:
+          args: deploy --dir=./packages/nouns-webapp/build --prod

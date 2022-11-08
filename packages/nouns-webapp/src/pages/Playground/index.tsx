@@ -22,7 +22,7 @@ import { Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core';
 
 interface Trait {
-  title: string;
+  title: string; 
   traitNames: string[];
 }
 

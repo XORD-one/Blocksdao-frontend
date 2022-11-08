@@ -13,7 +13,7 @@ const HoverCard: React.FC<HoverCardProps> = props => {
 
   return (
     <>
-      <ReactTooltip
+      {/* <ReactTooltip
         id={id}
         arrowColor={'rgba(0,0,0,0)'}
         className={classes.hover}
@@ -21,7 +21,7 @@ const HoverCard: React.FC<HoverCardProps> = props => {
         getContent={(dataTip:any) => {
           return hoverCardContent(dataTip);
         }}
-      />
+      /> */}
       <div data-tip={tip} data-for={id}>
         {props.children} 
       </div>

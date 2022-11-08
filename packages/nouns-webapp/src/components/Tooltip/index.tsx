@@ -1,6 +1,8 @@
-import React from 'react';
-import ReactTooltip from 'react-tooltip';
-import classes from './Tooltip.module.css';
+// @ts-nocheck
+
+import React from "react";
+import ReactTooltip from "react-tooltip";
+import classes from "./Tooltip.module.css";
 
 interface TooltipProps {
   tooltipContent: (dataTip: string) => React.ReactNode;
@@ -8,7 +10,7 @@ interface TooltipProps {
   id: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = props => {
+const Tooltip: React.FC<TooltipProps> = (props) => {
   const { tooltipContent, tip, id } = props;
 
   return (
@@ -16,7 +18,7 @@ const Tooltip: React.FC<TooltipProps> = props => {
       <ReactTooltip
         id={id}
         className={classes.hover}
-        getContent={dataTip => {
+        getContent={(dataTip: any) => {
           return tooltipContent(dataTip);
         }}
       />

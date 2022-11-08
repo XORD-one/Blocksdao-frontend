@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import { Col } from "react-bootstrap";
 import { StandaloneNounWithSeed } from "../StandaloneNoun";
 import AuctionActivity from "../AuctionActivity";
@@ -18,8 +17,8 @@ import {
   setPrevOnDisplayAuctionNounId,
 } from "../../state/slices/onDisplayAuction";
 import { beige, grey } from "../../utils/nounBgColors";
-import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
-import head from "../../assets/head.svg";
+// import { motion } from "framer-motion/dist/framer-motion";
+// import head from "../../assets/head.svg";
 
 interface AuctionProps {
   auction?: IAuction;
@@ -30,6 +29,7 @@ const Auction: React.FC<AuctionProps> = (props) => {
   console.log("currentAuction", currentAuction);
   const history = useHistory();
   const dispatch = useAppDispatch();
+
   let stateBgColor = useAppSelector(
     (state) => state && state.application.stateBackgroundColor
   );
@@ -62,11 +62,15 @@ const Auction: React.FC<AuctionProps> = (props) => {
     </div>
   );
 
+  console.log("nounContent", nounContent);
+
   const loadingNoun = (
     <div className={classes.nounWrapper}>
       <LoadingNoun />
     </div>
   );
+
+  console.log("loadingNoun", loadingNoun);
 
   const currentAuctionActivityContent = currentAuction && lastNounId && (
     <AuctionActivity
@@ -95,22 +99,25 @@ const Auction: React.FC<AuctionProps> = (props) => {
         <Row>
           <Col lg={{ span: 6 }} className={classes.nounContentCol}>
             {/* This is where the nft art is rendered || commenting it for now */}
-            {/* {currentAuction ? nounContent : loadingNoun} */}
-            <motion.div
+            {currentAuction ? nounContent : loadingNoun}
+            {/* <motion.div
+              layout
+              transition={{ duration: 0.3 }}
               animate={{
-                rotate: [0, 0, 10, -10, 0],
-                borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-              }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                times: [0, 0, 0.5, 0.8, 1],
-                repeat: Infinity,
-                repeatDelay: 1,
+                rotate: [0, 0, 0, 0, 0, 0, 0, 0, 0, 360],
+                scale: [0.7, 0.8, 0.8, 0.9, 0.9, 0.9, 1, 1, 1, 1.1],
+                opacity: [1, 1, 1, 0.8, 1, 1, 1, 1, 1, 1],
+                transition: {
+                  duration: 1,
+                  ease: "easeInOut",
+                  times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+                  loop: Infinity,
+                  repeatDelay: 2,
+                },
               }}
             >
               <img src={head} alt="ds" width="300" />
-            </motion.div>
+            </motion.div> */}
           </Col>
           <Col lg={{ span: 6 }} className={classes.auctionActivityCol}>
             {currentAuction &&
