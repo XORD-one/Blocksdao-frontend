@@ -1,6 +1,10 @@
 import { useContractCall, useContractFunction, useEthers } from "@usedapp/core";
-import { BigNumber as EthersBN, ethers, utils } from "ethers";
-import { NounsTokenABI, NounsTokenFactory } from "@nouns/contracts";
+import { BigNumber as EthersBN, ethers } from "ethers";
+// import { BigNumber as EthersBN, ethers, utils } from "ethers";
+
+import { NounsTokenFactory } from "@nouns/contracts";
+// import { NounsTokenABI, NounsTokenFactory } from "@nouns/contracts";
+
 import config, { cache, cacheKey, CHAIN_ID } from "../config";
 import { useQuery } from "@apollo/client";
 import { seedsQuery } from "./subgraph";
@@ -28,7 +32,7 @@ export enum NounsTokenContractFunction {
   delegateVotes = "votesToDelegate",
 }
 
-const abi = new utils.Interface(NounsTokenABI);
+// const abi = new utils.Interface(NounsTokenABI);
 const seedCacheKey = cacheKey(
   cache.seed,
   CHAIN_ID,
