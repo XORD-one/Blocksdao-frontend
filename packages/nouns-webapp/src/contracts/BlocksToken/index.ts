@@ -1,4 +1,4 @@
-export const BlocksToken_Address = "0x602851019347aF37c2f5044f6cB4f613bFC84d9C";
+export const BlocksToken_Address = "0x4A0ea1e4ac6Ca080687bd1ecDABB961bCd02432A";
 
 export const BlocksToken_ABI = [
   {

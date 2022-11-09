@@ -20,7 +20,6 @@ const AuctionPage: React.FC<AuctionPageProps> = (props) => {
   );
   const onDisplayAuctionNounId = onDisplayAuction?.nounId.toNumber();
 
-  console.log("onDisplayAuctionId", onDisplayAuctionNounId);
 
   const dispatch = useAppDispatch();
 

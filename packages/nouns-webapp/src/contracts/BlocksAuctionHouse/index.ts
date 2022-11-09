@@ -1,4 +1,5 @@
-export const BlocksAuctionHouse_Address = "0xEbaEB2A96f561eF1c347DE0F24bc3Bb4Dc39d5be";
+export const BlocksAuctionHouse_Address =
+  "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B";
 
 export const BlocksAuctionHouse_Contract_ABI = [
   {

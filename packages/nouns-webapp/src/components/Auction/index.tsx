@@ -26,7 +26,6 @@ interface AuctionProps {
 
 const Auction: React.FC<AuctionProps> = (props) => {
   const { auction: currentAuction } = props;
-  console.log("currentAuction", currentAuction);
   const history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -62,15 +61,11 @@ const Auction: React.FC<AuctionProps> = (props) => {
     </div>
   );
 
-  console.log("nounContent", nounContent);
-
   const loadingNoun = (
     <div className={classes.nounWrapper}>
       <LoadingNoun />
     </div>
   );
-
-  console.log("loadingNoun", loadingNoun);
 
   const currentAuctionActivityContent = currentAuction && lastNounId && (
     <AuctionActivity

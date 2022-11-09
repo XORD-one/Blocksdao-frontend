@@ -1,5 +1,5 @@
 export const BlocksDescriptor_Address =
-  "0x3298c8266df7bafC82cc065bbe726dfbAA053A5c";
+  "0xb9DF4bE2B74a1e55956690130D715a49685b2168";
 
 export const BlocksDescriptor_ABI = [
   {

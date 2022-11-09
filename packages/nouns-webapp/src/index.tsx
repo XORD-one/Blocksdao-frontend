@@ -125,14 +125,11 @@ const ChainSubscriber: React.FC = () => {
 
   const loadState = async () => {
     const wsProvider = new WebSocketProvider(config.app.wsRpcUri);
-    console.log("weprovider", wsProvider);
-    console.log("weProvider", wsProvider);
     const nounsAuctionHouseContract = NounsAuctionHouseFactory.connect(
       "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B",
-      wsProvider
+      wsProvider 
     );
 
-    console.log("nounsAuction", nounsAuctionHouseContract);
 
     const bidFilter = nounsAuctionHouseContract.filters.AuctionBid(
       null,
@@ -207,7 +204,6 @@ const ChainSubscriber: React.FC = () => {
 
     // Fetch the current auction
     const currentAuction = await nounsAuctionHouseContract.auction();
-    console.log("currentAuction", currentAuction);
     dispatch(setFullAuction(reduxSafeAuction(currentAuction)));
     dispatch(setLastAuctionNounId(currentAuction.nounId.toNumber()));
 
