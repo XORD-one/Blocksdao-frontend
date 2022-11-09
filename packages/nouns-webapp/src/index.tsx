@@ -22,7 +22,7 @@ import auction, {
 } from "./state/slices/auction";
 import onDisplayAuction, {
   setLastAuctionNounId,
-  setOnDisplayAuctionNounId,
+  setOnDisplayAuctionNounId, 
 } from "./state/slices/onDisplayAuction";
 import { ApolloProvider, useQuery } from "@apollo/client";
 import { clientFactory, latestAuctionsQuery } from "./wrappers/subgraph";
@@ -267,7 +267,7 @@ ReactDOM.render(
           getLibrary={ 
             (provider) => new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
           }
-        >
+        > 
           <ApolloProvider client={client}>
             <PastAuctions />
             <DAppProvider config={useDappConfig}>
