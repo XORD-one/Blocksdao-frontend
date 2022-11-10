@@ -23,7 +23,7 @@ import auction, {
 import onDisplayAuction, {
   setLastAuctionNounId,
   setOnDisplayAuctionNounId,
-} from "./state/slices/onDisplayAuction";
+} from "./state/slices/onDisplayAuction"; 
 import { ApolloProvider, useQuery } from "@apollo/client";
 import { clientFactory, latestAuctionsQuery } from "./wrappers/subgraph";
 import { useEffect } from "react";
