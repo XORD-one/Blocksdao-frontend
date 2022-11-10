@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ChainId, useEthers } from "@usedapp/core";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { setActiveAccount } from "./state/slices/account";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { setAlertModal } from "./state/slices/application";
 import classes from "./App.module.css";
 import "../src/css/globals.css";
@@ -56,14 +56,14 @@ function App() {
           <NavBar />
           <Switch>
             <Route exact path="/" component={AuctionPage} />
-            {/* <Redirect from="/auction/:id" to="/noun/:id" /> */}
-            {/* <Route
+            <Redirect from="/auction/:id" to="/noun/:id" />
+            <Route
               exact
               path="/noun/:id"
               render={(props) => (
                 <AuctionPage initialAuctionId={Number(props.match.params.id)} />
               )}
-            /> */}
+            />
             {/* <Route exact path="/nounders" component={NoundersPage} />
             <Route exact path="/create-proposal" component={CreateProposalPage} />
             <Route exact path="/vote" component={GovernancePage} />
@@ -74,7 +74,7 @@ function App() {
           </Switch>
           <Footer />
         </AvatarProvider>
-      </BrowserRouter> 
+      </BrowserRouter>
     </div>
   );
 }

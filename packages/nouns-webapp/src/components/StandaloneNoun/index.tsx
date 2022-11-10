@@ -1,5 +1,4 @@
-import {  getNounData } from "@nouns/assets";
-// import { ImageData as data, getNounData } from "@nouns/assets";
+import { ImageData as data, getNounData } from "@nouns/assets";
 
 import { buildSVG } from "@nouns/sdk";
 import { BigNumber as EthersBN } from "ethers";
@@ -36,9 +35,8 @@ export const getNoun = (nounId: string | EthersBN, seed: IBlockSeed) => {
   // const image = `data:image/svg+xml;base64,${btoa(
   //   buildSVG(parts, data.palette, background)
   // )}`;
-
   const image = `data:image/svg+xml;base64,${btoa(
-    buildSVG(parts, ["ffffff"], background)
+    buildSVG(parts, data.palette, background)
   )}`;
 
   console.log("image", image);
@@ -141,7 +139,6 @@ export const StandaloneNounWithSeed: React.FC<StandaloneNounWithSeedProps> = (
 
   const dispatch = useDispatch();
   const seed = useNounSeed(nounId);
-  console.log("seed", seed);
   const seedIsInvalid = Object.values(seed || {}).every((v) => v === 0);
 
   if (!seed || seedIsInvalid || !nounId || !onLoadSeed)

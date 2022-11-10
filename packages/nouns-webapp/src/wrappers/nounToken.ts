@@ -1,6 +1,5 @@
 import { useContractCall, useContractFunction, useEthers } from "@usedapp/core";
-import { BigNumber as EthersBN, ethers } from "ethers";
-// import { BigNumber as EthersBN, ethers, utils } from "ethers";
+import { BigNumber as EthersBN, ethers, utils } from "ethers";
 
 import { NounsTokenFactory } from "@nouns/contracts";
 // import { NounsTokenABI, NounsTokenFactory } from "@nouns/contracts";
@@ -25,14 +24,14 @@ export interface IBlockSeed {
   accessory: number;
   background: number;
   body: number;
-  // capStyle: number;
+  capStyle?: number;
 }
 
 export enum NounsTokenContractFunction {
   delegateVotes = "votesToDelegate",
 }
 
-// const abi = new utils.Interface(NounsTokenABI);
+const abi = new utils.Interface(BlocksToken_ABI);
 const seedCacheKey = cacheKey(
   cache.seed,
   CHAIN_ID,
@@ -98,15 +97,18 @@ const useNounSeeds = () => {
 };
 
 export const useNounSeed = (nounId: EthersBN) => {
-  const seeds = useNounSeeds();
-  console.log("seeds", seeds);
-  const seed = seeds?.[nounId.toString()];
-  // prettier-ignore
-  const request = seed ? false : {
-    BlocksSeeder_ABI,
-    address: BlocksSeeder_Address,
-    method: 'seeds',
-    args: [nounId],
+  // const seeds = useNounSeeds();
+
+  // console.log("seeds", seeds);
+  // const seed = seeds?.[nounId.toString()];
+
+  // console.log("seed_id", seed);
+  console.log("noundId", nounId);
+  const request = {
+    abi,
+    address: BlocksToken_Address,
+    method: "seeds",
+    args: [13],
   };
   const response = useContractCall<IBlockSeed>(request);
   if (response) {
@@ -118,14 +120,14 @@ export const useNounSeed = (nounId: EthersBN) => {
           accessory: response.accessory,
           background: response.background,
           body: response.body,
-          // capStyle: response.capStyle,
+          capStyle: response.capStyle,
         },
       });
       localStorage.setItem(seedCacheKey, updatedSeedCache);
     }
     return response;
   }
-  return seed;
+  return response;
 };
 
 export const useUserVotes = (): number | undefined => {
@@ -136,7 +138,7 @@ export const useUserVotes = (): number | undefined => {
 export const useAccountVotes = (account?: string): number | undefined => {
   const [votes] =
     useContractCall<[EthersBN]>({
-      BlocksToken_ABI,
+      abi,
       address: BlocksToken_Address,
       method: "getCurrentVotes",
       args: [account],
@@ -148,7 +150,7 @@ export const useUserDelegatee = (): string | undefined => {
   const { account } = useEthers();
   const [delegate] =
     useContractCall<[string]>({
-      BlocksToken_ABI,
+      abi,
       address: BlocksToken_Address,
       method: "delegates",
       args: [account],
@@ -163,7 +165,7 @@ export const useUserVotesAsOfBlock = (
   // Check for available votes
   const [votes] =
     useContractCall<[EthersBN]>({
-      BlocksToken_ABI,
+      abi,
       address: BlocksToken_Address,
       method: "getPriorVotes",
       args: [account, block],
@@ -182,7 +184,7 @@ export const useDelegateVotes = () => {
 export const useNounTokenBalance = (address: string): number | undefined => {
   const [tokenBalance] =
     useContractCall<[EthersBN]>({
-      BlocksToken_ABI,
+      abi,
       address: BlocksToken_Address,
       method: "balanceOf",
       args: [address],
@@ -195,7 +197,7 @@ export const useUserNounTokenBalance = (): number | undefined => {
 
   const [tokenBalance] =
     useContractCall<[EthersBN]>({
-      BlocksToken_ABI,
+      abi,
       address: BlocksToken_Address,
       method: "balanceOf",
       args: [account],
