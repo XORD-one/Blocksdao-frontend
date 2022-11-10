@@ -3,7 +3,7 @@ import { ImageData as data, getNounData } from "../../@blocks/assets";
 import { buildSVG } from "../../@blocks/sdk";
 import { BigNumber as EthersBN } from "ethers";
 import { IBlockSeed, useNounSeed } from "../../wrappers/nounToken";
-import Noun from "../Noun";
+import Noun from "../Noun"; 
 import { Link } from "react-router-dom";
 import classes from "./StandaloneNoun.module.css";
 import { useDispatch } from "react-redux";
