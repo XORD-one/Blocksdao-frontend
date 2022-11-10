@@ -6,7 +6,7 @@ This package contains the source for the Nouns webapp at [nouns.wtf](https://nou
 
 _From the base of the `nouns-monorepo`_
 
-In the first shell:
+In the first shell do this:
 
 ```sh
 # Install all dependencies and build contract artifacts
@@ -17,7 +17,7 @@ cd packages/nouns-contracts
 yarn task:run-local
 ```
 
-In the second shell:
+In the second shell do this:
 
 ```sh
 # Switch to nouns-webapp
