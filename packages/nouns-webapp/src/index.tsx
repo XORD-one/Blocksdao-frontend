@@ -36,7 +36,6 @@ import config, {
 } from "./config";
 import { WebSocketProvider } from "@ethersproject/providers";
 import { BigNumber, BigNumberish } from "ethers";
-import { NounsAuctionHouseFactory } from "./@blocks/sdk/dist";
 
 const NounsAuctionHouseFactory = require("./@blocks/sdk/dist");
 
