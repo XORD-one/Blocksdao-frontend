@@ -36,9 +36,7 @@ import config, {
 } from "./config";
 import { WebSocketProvider } from "@ethersproject/providers";
 import { BigNumber, BigNumberish } from "ethers";
-
-const NounsAuctionHouseFactory = require("./@blocks/sdk/dist");
-
+import { NounsAuctionHouseFactory } from "./@blocks/sdk";
 import dotenv from "dotenv";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { appendBid } from "./state/slices/auction";

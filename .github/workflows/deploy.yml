@@ -24,7 +24,9 @@ jobs:
           node-version: 14.x
       # Run npm install and build on our code
       - run: cd packages && cd nouns-webapp && yarn install
-      - run: cd packages && cd nouns-webapp && rm -rf build && yarn build --if-present
+      - run: cd packages && cd nouns-webapp && rm -rf build && yarn build
+        env:
+          CI: false
       # Deploy to Netlify using our production secrets
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
