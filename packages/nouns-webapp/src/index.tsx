@@ -22,7 +22,7 @@ import auction, {
 } from "./state/slices/auction";
 import onDisplayAuction, {
   setLastAuctionNounId,
-  setOnDisplayAuctionNounId, 
+  setOnDisplayAuctionNounId,
 } from "./state/slices/onDisplayAuction";
 import { ApolloProvider, useQuery } from "@apollo/client";
 import { clientFactory, latestAuctionsQuery } from "./wrappers/subgraph";
@@ -36,7 +36,7 @@ import config, {
 } from "./config";
 import { WebSocketProvider } from "@ethersproject/providers";
 import { BigNumber, BigNumberish } from "ethers";
-import { NounsAuctionHouseFactory } from "@nouns/sdk";
+import { NounsAuctionHouseFactory } from "./@blocks/sdk";
 import dotenv from "dotenv";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { appendBid } from "./state/slices/auction";
@@ -127,9 +127,8 @@ const ChainSubscriber: React.FC = () => {
     const wsProvider = new WebSocketProvider(config.app.wsRpcUri);
     const nounsAuctionHouseContract = NounsAuctionHouseFactory.connect(
       "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B",
-      wsProvider 
+      wsProvider
     );
-
 
     const bidFilter = nounsAuctionHouseContract.filters.AuctionBid(
       null,
@@ -260,10 +259,10 @@ ReactDOM.render(
       <ChainSubscriber />
       <React.StrictMode>
         <Web3ReactProvider
-          getLibrary={ 
+          getLibrary={
             (provider) => new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
           }
-        > 
+        >
           <ApolloProvider client={client}>
             <PastAuctions />
             <DAppProvider config={useDappConfig}>

@@ -1,7 +1,7 @@
 import {
   ContractAddresses as NounsContractAddresses,
   getContractAddressesForChainOrThrow,
-} from "@nouns/sdk";
+} from "./@blocks/sdk";
 import { ChainId } from "@usedapp/core";
 
 interface ExternalContractAddresses {

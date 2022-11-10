@@ -1,6 +1,6 @@
-import { ImageData as data, getNounData } from "@nouns/assets";
+import { ImageData as data, getNounData } from "../../@blocks/assets";
 
-import { buildSVG } from "@nouns/sdk";
+import { buildSVG } from "../../@blocks/sdk";
 import { BigNumber as EthersBN } from "ethers";
 import { IBlockSeed, useNounSeed } from "../../wrappers/nounToken";
 import Noun from "../Noun";
@@ -26,15 +26,11 @@ interface StandaloneNounWithSeedProps {
 
 export const getNoun = (nounId: string | EthersBN, seed: IBlockSeed) => {
   const id = nounId.toString();
-  console.log("id", id);
   const name = `Noun ${id}`;
   const description = `Noun ${id} is a member of the Nouns DAO`;
   const { parts, background } = getNounData(seed);
-  console.log("parts", "background", parts, background);
+  console.log("parts:background", parts, background);
 
-  // const image = `data:image/svg+xml;base64,${btoa(
-  //   buildSVG(parts, data.palette, background)
-  // )}`;
   const image = `data:image/svg+xml;base64,${btoa(
     buildSVG(parts, data.palette, background)
   )}`;
@@ -139,6 +135,7 @@ export const StandaloneNounWithSeed: React.FC<StandaloneNounWithSeedProps> = (
 
   const dispatch = useDispatch();
   const seed = useNounSeed(nounId);
+  console.log("seed", seed);
   const seedIsInvalid = Object.values(seed || {}).every((v) => v === 0);
 
   if (!seed || seedIsInvalid || !nounId || !onLoadSeed)

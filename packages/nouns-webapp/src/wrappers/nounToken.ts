@@ -1,17 +1,13 @@
 import { useContractCall, useContractFunction, useEthers } from "@usedapp/core";
 import { BigNumber as EthersBN, ethers, utils } from "ethers";
 
-import { NounsTokenFactory } from "@nouns/contracts";
-// import { NounsTokenABI, NounsTokenFactory } from "@nouns/contracts";
+import { NounsTokenFactory } from "../@blocks/contracts";
 
 import config, { cache, cacheKey, CHAIN_ID } from "../config";
 import { useQuery } from "@apollo/client";
 import { seedsQuery } from "./subgraph";
 import { useEffect } from "react";
-import {
-  BlocksSeeder_Address,
-  BlocksSeeder_ABI,
-} from "../contracts/BlocksSeeder";
+
 import { BlocksToken_Address, BlocksToken_ABI } from "../contracts/BlocksToken";
 
 interface BlockToken {
@@ -77,24 +73,24 @@ const seedArrayToObject = (seeds: (IBlockSeed & { id: string })[]) => {
   }, {});
 };
 
-const useNounSeeds = () => {
-  const cache = localStorage.getItem(seedCacheKey);
-  const cachedSeeds = cache ? JSON.parse(cache) : undefined;
-  const { data } = useQuery(seedsQuery(), {
-    skip: !!cachedSeeds,
-  });
+// const useNounSeeds = () => {
+//   const cache = localStorage.getItem(seedCacheKey);
+//   const cachedSeeds = cache ? JSON.parse(cache) : undefined;
+//   const { data } = useQuery(seedsQuery(), {
+//     skip: !!cachedSeeds,
+//   });
 
-  useEffect(() => {
-    if (!cachedSeeds && data?.seeds?.length) {
-      localStorage.setItem(
-        seedCacheKey,
-        JSON.stringify(seedArrayToObject(data.seeds))
-      );
-    }
-  }, [data, cachedSeeds]);
+//   useEffect(() => {
+//     if (!cachedSeeds && data?.seeds?.length) {
+//       localStorage.setItem(
+//         seedCacheKey,
+//         JSON.stringify(seedArrayToObject(data.seeds))
+//       );
+//     }
+//   }, [data, cachedSeeds]);
 
-  return cachedSeeds;
-};
+//   return cachedSeeds;
+// };
 
 export const useNounSeed = (nounId: EthersBN) => {
   // const seeds = useNounSeeds();
