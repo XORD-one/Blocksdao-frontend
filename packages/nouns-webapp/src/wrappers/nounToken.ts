@@ -1,7 +1,7 @@
 import { useContractCall, useContractFunction, useEthers } from "@usedapp/core";
 import { BigNumber as EthersBN, ethers, utils } from "ethers";
 
-import { NounsTokenFactory } from "../@blocks/contracts";
+import { NounsTokenFactory } from "../blocks/contracts";
 
 import config, { cache, cacheKey, CHAIN_ID } from "../config";
 import { useQuery } from "@apollo/client";

@@ -12,8 +12,8 @@ import {
 import classes from './Playground.module.css';
 import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import Link from '../../components/Link';
-import { ImageData, getNounData, getRandomNounSeed } from '../../@blocks/assets';
-import { buildSVG, EncodedImage, PNGCollectionEncoder } from '../../@blocks/sdk';
+import { ImageData, getNounData, getRandomNounSeed } from '../../blocks/assets';
+import { buildSVG, EncodedImage, PNGCollectionEncoder } from '../../blocks/sdk';
 import InfoIcon from '../../assets/icons/Info.svg';
 import Noun from '../../components/Noun';
 import NounModal from './NounModal';
