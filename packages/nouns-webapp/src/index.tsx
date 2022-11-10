@@ -23,7 +23,7 @@ import auction, {
 import onDisplayAuction, {
   setLastAuctionNounId,
   setOnDisplayAuctionNounId,
-} from "./state/slices/onDisplayAuction"; 
+} from "./state/slices/onDisplayAuction";
 import { ApolloProvider, useQuery } from "@apollo/client";
 import { clientFactory, latestAuctionsQuery } from "./wrappers/subgraph";
 import { useEffect } from "react";
@@ -36,7 +36,7 @@ import config, {
 } from "./config";
 import { WebSocketProvider } from "@ethersproject/providers";
 import { BigNumber, BigNumberish } from "ethers";
-import { NounsAuctionHouseFactory } from "./@blocks/sdk";
+import { NounsAuctionHouseFactory } from "./@blocks/contracts";
 import dotenv from "dotenv";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { appendBid } from "./state/slices/auction";
