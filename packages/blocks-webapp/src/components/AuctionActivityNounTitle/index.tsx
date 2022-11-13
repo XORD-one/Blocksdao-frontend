@@ -21,8 +21,6 @@ const AuctionActivityNounTitle: React.FC<{
         }}
       >
         Block {Number(nounId._hex)}
-        Block {parseInt(nounId._hex)}
-        Block {parseInt(nounId._hex, 16)}
       </h1>
     </div>
   );
