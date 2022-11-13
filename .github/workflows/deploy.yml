@@ -32,7 +32,7 @@ jobs:
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: U5-0dzyh7Ct5nH3zawzeTkM3U2Qd2DBXiGS9rRRLH8o
-          NETLIFY_SITE_ID: cdb66bc9-610c-4a7a-a18d-f7d05535103c
+          NETLIFY_SITE_ID: e2192e41-9eee-43c6-a6f1-8c0a2de92573
 
         with:
           args: deploy --dir=./packages/blocks-webapp/build --prod
