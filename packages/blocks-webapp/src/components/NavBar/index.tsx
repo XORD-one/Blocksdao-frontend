@@ -10,7 +10,7 @@ import testnetNoun from "../../assets/testnet-noun.png";
 // import config, { CHAIN_ID } from "../../config";
 import { CHAIN_ID } from "../../config";
 // import { utils } from "ethers";
-import { buildEtherscanHoldingsLink } from "../../utils/etherscan";
+// import { buildEtherscanHoldingsLink } from "../../utils/etherscan";
 import { ExternalURL, externalURL } from "../../utils/externalURL";
 // import useLidoBalance from "../../hooks/useLidoBalance";
 import NavBarButton, { NavBarButtonStyle } from "../NavBarButton";
