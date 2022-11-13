@@ -23,8 +23,8 @@ jobs:
       #   with:
       #     node-version: 14.x
       # Run npm install and build on our code
-      - run: cd packages && cd nouns-webapp && yarn install
-      - run: cd packages && cd nouns-webapp && rm -rf build && yarn build
+      - run: cd packages && cd blocks-webapp && yarn install
+      - run: cd packages && cd blocks-webapp && rm -rf build && yarn build
         env:
           CI: false
       # Deploy to Netlify using our production secrets
@@ -35,4 +35,4 @@ jobs:
           NETLIFY_SITE_ID: cdb66bc9-610c-4a7a-a18d-f7d05535103c
 
         with:
-          args: deploy --dir=./packages/nouns-webapp/build --prod
+          args: deploy --dir=./packages/blocks-webapp/build --prod
