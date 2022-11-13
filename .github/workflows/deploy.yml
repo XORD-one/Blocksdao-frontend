@@ -18,10 +18,10 @@ jobs:
         with:
           ref: development
       # Install NodeJS
-      - name: Use Yarn
-        uses: mskelton/setup-yarn@v1
-        with:
-          node-version: 14.x
+      # - name: Use Yarn
+      #   uses: mskelton/setup-yarn@v1
+      #   with:
+      #     node-version: 14.x
       # Run npm install and build on our code
       - run: cd packages && cd nouns-webapp && yarn install
       - run: cd packages && cd nouns-webapp && rm -rf build && yarn build
