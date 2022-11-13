@@ -1,0 +1,14 @@
+{
+  "1": {
+    "blocksToken": "0x4A0ea1e4ac6Ca080687bd1ecDABB961bCd02432A",
+    "blocksSeeder": "0x6BA3Ca2C591718BA114966BD9164154088d1AC3b",
+    "blocksDescriptor": "0xb9DF4bE2B74a1e55956690130D715a49685b2168",
+    "blocksAuctionHouse": "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B"
+  },
+  "5": {
+    "blocksToken": "0x4A0ea1e4ac6Ca080687bd1ecDABB961bCd02432A",
+    "blocksSeeder": "0x6BA3Ca2C591718BA114966BD9164154088d1AC3b",
+    "blocksDescriptor": "0xb9DF4bE2B74a1e55956690130D715a49685b2168",
+    "blocksAuctionHouse": "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B"
+  }
+}

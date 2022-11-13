@@ -1,0 +1,32 @@
+{
+  "name": "@blockdao/assets",
+  "version": "1.0.4",
+  "description": "Blocks run-length encoded image data",
+  "author": "",
+  "homepage": "",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "encode": "ts-node scripts/encode.ts",
+    "encode-more": "ts-node scripts/encode-more.ts",
+    "append-image-data": "ts-node scripts/append-image-data.ts",
+    "clean": "rimraf dist tsconfig.build.tsbuildinfo",
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "yarn build",
+    "test": "mocha -r ts-node/register \"test/**/*.test.ts\""
+  },
+  "devDependencies": {
+    "@blockdao/sdk": "^1.0.0",
+    "@types/pngjs": "^6.0.1",
+    "chai": "^4.2.0",
+    "mocha": "^8.4.0",
+    "pngjs": "^6.0.0"
+  },
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.5.0",
+    "@ethersproject/solidity": "^5.5.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}

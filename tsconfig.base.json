@@ -2,7 +2,7 @@
   "compilerOptions": {
     /*
      * Uncomment for small accuracy reduction & vast build time reduction for
-     * --watch mode 
+     * --watch mode
      */
     // "assumeChangesOnlyAffectDirectDependencies": true,
     "allowSyntheticDefaultImports": true,
@@ -16,12 +16,12 @@
     "lib": ["esnext"],
     "module": "CommonJS",
     "moduleResolution": "node",
-    "noImplicitThis":true,
+    "noImplicitThis": true,
     "outDir": "dist",
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es6",
+    "target": "es6"
   },
   "exclude": ["**/dist"]
 }
