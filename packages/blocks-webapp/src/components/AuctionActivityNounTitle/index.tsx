@@ -16,7 +16,7 @@ const AuctionActivityNounTitle: React.FC<{
             : "var(--brand-warm-dark-text)",
         }}
       >
-        <Trans>Noun {Number(nounId._hex)}</Trans>
+        <Trans>Noun {parseInt(nounId._hex, 16)}</Trans>
       </h1>
     </div>
   );
