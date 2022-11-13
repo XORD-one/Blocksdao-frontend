@@ -17,8 +17,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: development
-      # Build the project
-      - name: Build the project
+      # Install NodeJS
+      - name: Use Yarn
+      #   uses: mskelton/setup-yarn@v1
+      #   with:
+      #     node-version: 14.x
+      # Run npm install and build on our code
       - run: cd packages && cd blocks-webapp && yarn install
       - run: cd packages && cd blocks-webapp && rm -rf build && yarn build
         env:
