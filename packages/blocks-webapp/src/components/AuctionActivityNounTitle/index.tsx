@@ -1,6 +1,5 @@
 import { BigNumber } from "ethers";
 import classes from "./AuctionActivityNounTitle.module.css";
-import { Trans } from "@lingui/macro";
 import { useEffect } from "react";
 
 const AuctionActivityNounTitle: React.FC<{
