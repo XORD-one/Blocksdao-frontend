@@ -4,6 +4,10 @@ name: Deploy to Netlify
 on:
   push:
     branches: [development]
+env:
+  REACT_APP_CHAIN_ID: ${{secrets.REACT_APP_CHAIN_ID}}
+  REACT_APP_INFURA_PROJECT_ID: ${{secrets.REACT_APP_INFURA_PROJECT_ID}}
+  REACT_APP_GOERLI_JSONRPC: ${{secrets.REACT_APP_GOERLI_JSONRPC}}
 
 # Jobs to carry out
 jobs:
@@ -24,7 +28,7 @@ jobs:
       #     node-version: 14.x
       # Run npm install and build on our code
       - run: cd packages && cd blocks-webapp && yarn install
-      - run: cd packages && cd blocks-webapp && rm -rf build && yarn build
+      - run: cd packages && cd blocks-webapp && yarn build
         env:
           CI: false
       # Deploy to Netlify using our production secrets
