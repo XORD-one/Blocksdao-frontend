@@ -25,7 +25,7 @@ import BidHistoryModal from "../BidHistoryModal";
 import { Trans } from "@lingui/macro";
 import Holder from "../Holder";
 
-const openEtherscanBidHistory = () => { 
+const openEtherscanBidHistory = () => {
   const url = buildEtherscanAddressLink(
     "0x9e885313BCA79674Eb5B5Cc393BE3ccBb087D25B"
   );
@@ -52,7 +52,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (
     onNextAuctionClick,
     displayGraphDepComps,
   } = props;
-
+  console.log("auction", auction);
   const isCool = useAppSelector((state) => state.application.isCoolBackground);
 
   const [auctionEnded, setAuctionEnded] = useState(false);
