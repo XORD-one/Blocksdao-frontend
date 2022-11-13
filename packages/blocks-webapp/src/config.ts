@@ -3,6 +3,7 @@ import {
   getContractAddressesForChainOrThrow,
 } from "@blockdao/sdk";
 import { ChainId } from "@usedapp/core";
+require("dotenv").config();
 
 interface ExternalContractAddresses {
   lidoToken: string | undefined;
