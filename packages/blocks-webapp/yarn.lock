@@ -1225,10 +1225,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@blockdao/assets@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@blockdao/assets/-/assets-1.0.4.tgz#a04bce0c597a123b244e49e46660737f2e91a47b"
-  integrity sha512-YZ4GH+/aWVGDMTCENcUWbtceNJL4j2g+J8Mn6f/ODS54jPVGdn/I1sU/v6rf+SOvWfUSM06LMnxSe1m+KsqZxQ==
+"@blockdao/assets@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@blockdao/assets/-/assets-1.0.5.tgz#77751be2f6759d84168e5f8f03ed2542d238100b"
+  integrity sha512-Tdc4PVKdKOKjMMno96pLavafx/mCwoBvAf0gkWzrLRECojiuHuoMUkgeazhucVZg1MW5TAJCVy8mHUy6s7GsNw==
   dependencies:
     "@ethersproject/bignumber" "^5.5.0"
     "@ethersproject/solidity" "^5.5.0"
