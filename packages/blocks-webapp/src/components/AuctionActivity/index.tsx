@@ -17,12 +17,12 @@ import AuctionActivityDateHeadline from "../AuctionActivityDateHeadline";
 import BidHistoryBtn from "../BidHistoryBtn";
 // import config from "../../config";
 import { buildEtherscanAddressLink } from "../../utils/etherscan";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import NounInfoCard from "../NounInfoCard";
 import { useAppSelector } from "../../hooks";
 import BidHistoryModal from "../BidHistoryModal";
-import { Trans } from "@lingui/macro";
+// import { Trans } from "@lingui/macro";
 import Holder from "../Holder";
 
 const openEtherscanBidHistory = () => {
@@ -138,7 +138,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (
             </Col>
           </Row>
         </div>
-        {!auctionEnded && (
+        {/* {!auctionEnded && (
           <Row className={classes.activityRow}>
             <Col lg={12} className={classes.fomoNounsLink}>
               <FontAwesomeIcon icon={faInfoCircle} />
@@ -151,7 +151,7 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (
               </a>
             </Col>
           </Row>
-        )}
+        )} */}
         {isLastAuction && (
           <>
             <Row className={classes.activityRow}>

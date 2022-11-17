@@ -1,10 +1,10 @@
-import { useAppSelector } from '../hooks';
+import { useAppSelector } from "../hooks";
 
 export const shouldUseStateBg = (history: any) => {
   return (
-    history.location.pathname === '/' ||
-    history.location.pathname.includes('/block') ||
-    history.location.pathname.includes('/auction')
+    history.location.pathname === "/" ||
+    history.location.pathname.includes("/block") ||
+    history.location.pathname.includes("/auction")
   );
 };
 
@@ -17,9 +17,16 @@ export const shouldUseStateBg = (history: any) => {
  * @param history  History object from useHistory
  * @returns item corresponding to current state
  */
-export const usePickByState = (whiteState: any, coolState: any, warmState: any, history: any) => {
+export const usePickByState = (
+  whiteState: any,
+  coolState: any,
+  warmState: any,
+  history: any
+) => {
   const useStateBg = shouldUseStateBg(history);
-  const isCoolState = useAppSelector(state => state.application.isCoolBackground);
+  const isCoolState = useAppSelector(
+    (state) => state.application.isCoolBackground
+  );
 
   if (!useStateBg) {
     return whiteState;
@@ -27,5 +34,5 @@ export const usePickByState = (whiteState: any, coolState: any, warmState: any, 
   if (isCoolState) {
     return coolState;
   }
-  return warmState;
+  return coolState;
 };
