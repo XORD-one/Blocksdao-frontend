@@ -3,7 +3,7 @@ import { useAppSelector } from '../hooks';
 export const shouldUseStateBg = (history: any) => {
   return (
     history.location.pathname === '/' ||
-    history.location.pathname.includes('/noun') ||
+    history.location.pathname.includes('/block') ||
     history.location.pathname.includes('/auction')
   );
 };

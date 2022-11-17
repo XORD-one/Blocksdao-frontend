@@ -56,10 +56,10 @@ function App() {
           <NavBar />
           <Switch>
             <Route exact path="/" component={AuctionPage} />
-            <Redirect from="/auction/:id" to="/noun/:id" />
+            <Redirect from="/auction/:id" to="/block/:id" /> 
             <Route
               exact
-              path="/noun/:id"
+              path="/block/:id"
               render={(props) => (
                 <AuctionPage initialAuctionId={Number(props.match.params.id)} />
               )}
