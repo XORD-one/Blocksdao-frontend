@@ -26,3 +26,15 @@
   text-decoration: none;
   cursor: default;
 }
+
+.settleBtn {
+  width: 100%;
+  height: 3rem;
+  color: white;
+  border: transparent;
+  background-color: var(--brand-black);
+  font-weight: bold;
+  font-family: "PT Root UI";
+  font-size: 18px;
+  border-radius: 10px;
+}

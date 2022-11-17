@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AlertModal from "./components/Modal";
 import NavBar from "./components/NavBar";
 import NetworkAlert from "./components/NetworkAlert";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import AuctionPage from "./pages/Auction";
 // import GovernancePage from './pages/Governance';
 // import CreateProposalPage from './pages/CreateProposal';
@@ -72,7 +72,7 @@ function App() {
             <Route exact path="/delegate" component={DelegatePage} />
           <Route component={NotFoundPage} /> */}
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </AvatarProvider>
       </BrowserRouter>
     </div>

@@ -7,9 +7,9 @@ import bidHistoryClasses from "./BidHistory.module.css";
 import Bid from "../Bid";
 import AuctionTimer from "../AuctionTimer";
 import CurrentBid from "../CurrentBid";
-import Winner from "../Winner";
+// import Winner from "../Winner";
 import BidHistory from "../BidHistory";
-import AuctionNavigation from "../AuctionNavigation";
+// import AuctionNavigation from "../AuctionNavigation";
 import AuctionActivityWrapper from "../AuctionActivityWrapper";
 import AuctionTitleAndNavWrapper from "../AuctionTitleAndNavWrapper";
 import AuctionActivityNounTitle from "../AuctionActivityNounTitle";
@@ -46,13 +46,12 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (
 ) => {
   const {
     auction,
-    isFirstAuction,
+    // isFirstAuction,
     isLastAuction,
-    onPrevAuctionClick,
-    onNextAuctionClick,
+    // onPrevAuctionClick,
+    // onNextAuctionClick,
     displayGraphDepComps,
   } = props;
-  console.log("auction", auction);
   const isCool = useAppSelector((state) => state.application.isCoolBackground);
 
   const [auctionEnded, setAuctionEnded] = useState(false);
@@ -101,14 +100,14 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (
         <div className={classes.informationRow}>
           <Row className={classes.activityRow}>
             <AuctionTitleAndNavWrapper>
-              {displayGraphDepComps && (
+              {/* {displayGraphDepComps && (
                 <AuctionNavigation
                   isFirstAuction={isFirstAuction}
                   isLastAuction={isLastAuction}
                   onNextAuctionClick={onNextAuctionClick}
                   onPrevAuctionClick={onPrevAuctionClick}
                 />
-              )}
+              )} */}
               <AuctionActivityDateHeadline startTime={auction.startTime} />
             </AuctionTitleAndNavWrapper>
             <Col lg={12}>
@@ -128,7 +127,8 @@ const AuctionActivity: React.FC<AuctionActivityProps> = (
             <Col lg={6} className={classes.auctionTimerCol}>
               {auctionEnded ? (
                 isLastAuction ? (
-                  <Winner winner={auction.bidder} />
+                  // <Winner winner={auction.bidder} />
+                  ""
                 ) : (
                   <Holder nounId={auction.blockId.toNumber()} />
                 )

@@ -1,6 +1,6 @@
 import Banner from "../../components/Banner";
 import Auction from "../../components/Auction";
-import Documentation from "../../components/Documentation";
+// import Documentation from "../../components/Documentation";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setOnDisplayAuctionBlockId } from "../../state/slices/onDisplayAuction";
 import { push } from "connected-react-router";
@@ -47,14 +47,15 @@ const AuctionPage: React.FC<AuctionPageProps> = (props) => {
   return (
     <>
       <Auction auction={onDisplayAuction ? onDisplayAuction : undefined} />
+      <Banner />
+
       {onDisplayAuctionNounId !== undefined &&
-      onDisplayAuctionNounId !== lastAuctionNounId ? (
-        // <ProfileActivityFeed nounId={onDisplayAuctionNounId} />
-        ""
-      ) : (
-        <Banner />
-      )}
-      <Documentation />
+      onDisplayAuctionNounId !== lastAuctionNounId
+        ? // <ProfileActivityFeed nounId={onDisplayAuctionNounId} />
+          ""
+        : // <Banner />
+          ""}
+      {/* <Documentation /> */}
     </>
   );
 };

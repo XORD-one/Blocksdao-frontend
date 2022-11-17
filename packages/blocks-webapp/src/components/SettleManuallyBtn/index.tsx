@@ -1,26 +1,29 @@
-import { useState, useEffect, useRef } from 'react';
-import { Auction } from '../../wrappers/nounsAuction';
-import classes from './SettleManuallyBtn.module.css';
-import dayjs from 'dayjs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { CHAIN_ID } from '../../config';
-import { Trans } from '@lingui/macro';
+import { useState, useEffect, useRef } from "react";
+import { Auction } from "../../wrappers/nounsAuction";
+import classes from "./SettleManuallyBtn.module.css";
+import dayjs from "dayjs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { CHAIN_ID } from "../../config";
+import { Trans } from "@lingui/macro";
+import { Button } from "react-bootstrap";
 
 const SettleManuallyBtn: React.FC<{
   settleAuctionHandler: () => void;
   auction: Auction;
-}> = props => {
+}> = (props) => {
   const { settleAuctionHandler, auction } = props;
 
   const MINS_TO_ENABLE_MANUAL_SETTLEMENT = 5;
 
   const [settleEnabled, setSettleEnabled] = useState(false);
-  const [auctionTimer, setAuctionTimer] = useState(MINS_TO_ENABLE_MANUAL_SETTLEMENT * 60);
+  const [auctionTimer, setAuctionTimer] = useState(
+    MINS_TO_ENABLE_MANUAL_SETTLEMENT * 60
+  );
   const auctionTimerRef = useRef(auctionTimer); // to access within setTimeout
   auctionTimerRef.current = auctionTimer;
 
-  const timerDuration = dayjs.duration(auctionTimerRef.current, 's');
+  const timerDuration = dayjs.duration(auctionTimerRef.current, "s");
 
   // timer logic
   useEffect(() => {
@@ -61,7 +64,7 @@ const SettleManuallyBtn: React.FC<{
       >
         {settleEnabled ? (
           <>
-            <Trans>Settle manually</Trans>
+            <Button className={classes.settleBtn}>Settle manually</Button>
           </>
         ) : (
           <>
