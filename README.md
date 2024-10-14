@@ -15,3 +15,4 @@ This repository contains the frontend code for the BlocksDAO project. It is buil
 ├── tsconfig.json          # TypeScript configuration file
 ├── yarn.lock              # Yarn lock file for dependencies
 ```
+ 
